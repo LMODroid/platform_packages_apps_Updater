@@ -4,6 +4,7 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:orientation="horizontal">
 
         <TextView
@@ -33,35 +34,37 @@
             android:entries="@array/menu_auto_updates_check_interval_entries" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/preferences_auto_delete_updates"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
+        android:checked="true"
         android:text="@string/menu_auto_delete_updates"
         android:textSize="16sp" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/preferences_metered_network_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/menu_metered_network_warning"
         android:textSize="16sp" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/preferences_ab_perf_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/menu_ab_perf_mode"
         android:textSize="16sp" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/preferences_update_recovery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/menu_update_recovery"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone" />
 </LinearLayout>
