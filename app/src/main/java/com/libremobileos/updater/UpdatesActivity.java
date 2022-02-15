@@ -41,6 +41,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.libremobileos.updater.controller.UpdaterController;
 import com.libremobileos.updater.controller.UpdaterService;
@@ -71,6 +72,7 @@ public class UpdatesActivity extends UpdatesListActivity {
 
     private UpdateView updateView;
     private RelativeLayout actionCheck;
+    private SwipeRefreshLayout pullToRefresh;
     private int impatience = 0;
 
     private boolean mIsTV;
@@ -93,6 +95,7 @@ public class UpdatesActivity extends UpdatesListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updates);
         actionCheck = findViewById(R.id.actionCheck);
+        pullToRefresh = findViewById(R.id.updates_swipe_container);
         RelativeLayout actionStart = findViewById(R.id.actionStart);
         LinearLayout actionOptions = findViewById(R.id.actionOptions);
         RelativeLayout updateProgress = findViewById(R.id.updateProgressLayout);
@@ -125,6 +128,7 @@ public class UpdatesActivity extends UpdatesListActivity {
         bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce);
 
         actionCheck.findViewById(R.id.actionCheckButton).setOnClickListener(view -> downloadUpdatesList(true));
+        pullToRefresh.setOnRefreshListener(() -> downloadUpdatesList(true));
     }
 
     @Override
@@ -201,6 +205,7 @@ public class UpdatesActivity extends UpdatesListActivity {
         List<String> updateIds = new ArrayList<>();
         List<UpdateInfo> sortedUpdates = controller.getUpdates();
         if (sortedUpdates.isEmpty()) {
+            updateView.setDownloadId(null);
             updateView.noUpdates();
             actionCheck.setVisibility(View.VISIBLE);
         } else {
@@ -262,6 +267,7 @@ public class UpdatesActivity extends UpdatesListActivity {
                         showSnackbar(R.string.snack_updates_check_failed, Snackbar.LENGTH_LONG);
                     }
                     refreshAnimationStop();
+                    pullToRefresh.setRefreshing(false);
                 });
             }
 
@@ -275,6 +281,7 @@ public class UpdatesActivity extends UpdatesListActivity {
                     Log.d(TAG, "List downloaded");
                     processNewJson(jsonFile, jsonFileTmp, manualRefresh);
                     refreshAnimationStop();
+                    pullToRefresh.setRefreshing(false);
                 });
             }
         };
