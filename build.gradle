@@ -33,7 +33,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['res']
+            res.srcDirs = ['res', 'res-SettingsTheme']
             java.srcDirs = ['src']
             manifest.srcFile 'AndroidManifest.xml'
         }
