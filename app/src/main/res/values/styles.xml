@@ -45,4 +45,40 @@
         <item name="android:textSize">34sp</item>
     </style>
 
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/sheet_background</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog">
+        <item name="android:switchStyle">@style/Switch.SettingsLib</item>
+        <item name="android:textAppearanceListItem">
+            @style/TextAppearance.PreferenceTitle.SettingsLib
+        </item>
+        <item name="android:listPreferredItemPaddingStart">24dp</item>
+        <item name="android:listPreferredItemPaddingLeft">24dp</item>
+        <item name="android:listPreferredItemPaddingEnd">16dp</item>
+        <item name="android:listPreferredItemPaddingRight">16dp</item>
+        <item name="preferenceTheme">@style/PreferenceTheme.SettingsLib</item>
+        <item name="android:progressBarStyleHorizontal">@style/HorizontalProgressBar.SettingsLib
+        </item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorControlNormal">?android:attr/colorControlNormal</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.SettingsLib</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">google-sans</item>
+    </style>
+
+    <style name="spinnerStyle" parent="BottomSheetDialogTheme">
+        <item name="android:textColor">@color/inverted</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+
 </resources>

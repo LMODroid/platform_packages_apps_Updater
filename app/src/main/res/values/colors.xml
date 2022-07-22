@@ -21,4 +21,6 @@
     <color name="inverted">#212121</color>
     <color name="ic_background">#333333</color>
 
+    <color name="pillColor">@*android:color/background_device_default_light</color>
+
 </resources>
