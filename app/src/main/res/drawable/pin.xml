@@ -5,5 +5,5 @@
         android:width="48dp"
         android:height="2dp" />
     <corners android:radius="2dp" />
-    <solid android:color="@color/pillColor" />
+    <solid android:color="@color/colorPrimaryBackground" />
 </shape>

@@ -567,7 +567,7 @@ class UpdateView : LinearLayout {
     private fun startActionMode(update: UpdateInfo, canDelete: Boolean, anchor: View?) {
         mSelectedDownload = update.downloadId
         val wrapper = ContextThemeWrapper(mActivity,
-                R.style.AppTheme_PopupMenuOverlapAnchor)
+                R.style.Theme_Base_PopupMenuOverlapAnchor)
         val popupMenu = PopupMenu(wrapper, anchor!!, Gravity.NO_GRAVITY,
                 R.attr.actionOverflowMenuStyle, 0)
         popupMenu.inflate(R.menu.menu_action_mode)
