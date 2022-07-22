@@ -26,9 +26,9 @@
             android:animateLayoutChanges="true"
             android:background="@color/colorPrimary"
             android:backgroundTint="@color/colorPrimary"
-            app:collapsedTitleTextAppearance="@style/Dashboard.Toolbar.Collapsed"
+            app:collapsedTitleTextAppearance="@style/CollapsingToolbarTitle.Collapsed"
             app:expandedTitleMarginStart="32dp"
-            app:expandedTitleTextAppearance="@style/Dashboard.Toolbar.Expanded"
+            app:expandedTitleTextAppearance="@style/CollapsingToolbarTitle.Expanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:maxLines="2"
             app:toolbarId="@+id/action_bar">
@@ -41,7 +41,7 @@
                 android:paddingStart="32dp"
                 android:theme="?android:attr/actionBarTheme"
                 android:title="@string/snack_no_updates_found"
-                android:titleTextAppearance="@style/Dashboard.Toolbar.Collapsed"
+                android:titleTextAppearance="@style/CollapsingToolbarTitle.Collapsed"
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin" />
 
