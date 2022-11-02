@@ -113,7 +113,7 @@ public class Utils {
     public static boolean canInstall(UpdateBaseInfo update) {
         return (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) ||
                 update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) &&
-               (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_MAJOR_UPDATE, false) ||
+               (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_MAJOR_UPDATE, true) ||
                 update.getVersion().equalsIgnoreCase(
                         SystemProperties.get(Constants.PROP_BUILD_VERSION)));
     }
