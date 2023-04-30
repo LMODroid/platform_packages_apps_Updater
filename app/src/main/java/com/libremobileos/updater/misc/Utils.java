@@ -105,8 +105,8 @@ public class Utils {
         return (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) ||
                 update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) &&
                (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_MAJOR_UPDATE, false) ||
-                update.getVersion().split(".")[0].equalsIgnoreCase(
-                        SystemProperties.get(Constants.PROP_BUILD_VERSION).split(".")[0]));
+                update.getVersion().split("\\.")[0].equalsIgnoreCase(
+                        SystemProperties.get(Constants.PROP_BUILD_VERSION).split("\\.")[0]));
     }
 
     public static List<UpdateInfo> parseJson(File file, boolean compatibleOnly)
