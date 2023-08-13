@@ -94,7 +94,8 @@ public class Utils {
     }
 
     public static boolean isCompatible(UpdateBaseInfo update) {
-        if (update.getVersion().compareTo(SystemProperties.get(Constants.PROP_BUILD_VERSION)) < 0) {
+        if (Integer.valueOf(update.getVersion().split("\\.")[0]).compareTo(Integer.valueOf(
+                SystemProperties.get(Constants.PROP_BUILD_VERSION).split("\\.")[0])) < 0) {
             Log.d(TAG, update.getName() + " is older than current Android version");
             return false;
         }
