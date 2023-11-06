@@ -59,12 +59,12 @@ class PreferenceSheet : BottomSheetDialogFragment() {
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         preferencesAutoUpdatesCheckInterval.setSelection(Utils.getUpdateCheckSetting(requireContext()))
         preferencesAutoDeleteUpdates.isChecked =
-            prefs!!.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, false)
+            prefs!!.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, true)
         preferencesMeteredNetworkWarning.isChecked =
             prefs!!.getBoolean(Constants.PREF_METERED_NETWORK_WARNING,
                 prefs!!.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true))
         preferencesAbPerfMode.isChecked =
-            prefs!!.getBoolean(Constants.PREF_AB_PERF_MODE, false)
+            prefs!!.getBoolean(Constants.PREF_AB_PERF_MODE, true)
 
         if (resources.getBoolean(R.bool.config_hideRecoveryUpdate)) {
             // Hide the update feature if explicitly requested.

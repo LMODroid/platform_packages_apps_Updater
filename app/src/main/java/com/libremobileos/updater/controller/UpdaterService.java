@@ -405,7 +405,7 @@ public class UpdaterService extends Service {
                 mNotificationManager.notify(NOTIFICATION_ID, mNotificationBuilder.build());
 
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-                boolean deleteUpdate = pref.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, false);
+                boolean deleteUpdate = pref.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, true);
                 if (deleteUpdate) {
                     mUpdaterController.deleteUpdate(update.getDownloadId());
                 }
