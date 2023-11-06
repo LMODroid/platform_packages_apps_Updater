@@ -66,9 +66,9 @@ class PreferenceSheet : BottomSheetDialogFragment() {
         preferencesAbPerfMode.isChecked =
             prefs!!.getBoolean(Constants.PREF_AB_PERF_MODE, true)
 
-        if (resources.getBoolean(R.bool.config_hideRecoveryUpdate)) {
-            // Hide the update feature if explicitly requested.
-            // Might be the case of A-only devices using prebuilt vendor images.
+        if (resources.getBoolean(R.bool.config_hideRecoveryUpdate) || Utils.isABDevice()) {
+            // Hide the update feature if it's A/B device or explicitly requested.
+            // Explicit request might be the case of A-only devices using prebuilt vendor images.
             preferencesUpdateRecovery.visibility = View.GONE
         } else if (Utils.isRecoveryUpdateExecPresent()) {
             preferencesUpdateRecovery.isChecked =
