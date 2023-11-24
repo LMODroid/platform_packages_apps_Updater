@@ -280,7 +280,8 @@ public class Utils {
         long prevTimestamp = preferences.getLong(Constants.PREF_INSTALL_OLD_TIMESTAMP, 0);
         String lastUpdatePath = preferences.getString(Constants.PREF_INSTALL_PACKAGE_PATH, null);
         boolean reinstalling = preferences.getBoolean(Constants.PREF_INSTALL_AGAIN, false);
-        boolean deleteUpdates = preferences.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, true);
+        boolean deleteUpdates = isDeleteUpdatesForceEnabled(context) ? true
+                : preferences.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, true);
         if ((buildTimestamp != prevTimestamp || reinstalling) && deleteUpdates &&
                 lastUpdatePath != null) {
             File lastUpdate = new File(lastUpdatePath);
@@ -402,5 +403,13 @@ public class Utils {
 
     public static boolean isRecoveryUpdateExecPresent() {
         return new File(Constants.UPDATE_RECOVERY_EXEC).exists();
+    }
+
+    public static boolean isDeleteUpdatesForceEnabled(Context context) {
+        return context.getResources().getBoolean(R.bool.config_forceDeleteUpdates);
+    }
+
+    public static boolean isABPerfModeForceEnabled(Context context) {
+        return context.getResources().getBoolean(R.bool.config_forcePrioritizeUpdateProcess);
     }
 }

@@ -16,4 +16,6 @@
 -->
 <resources>
     <bool name="config_hideRecoveryUpdate">false</bool>
+    <bool name="config_forceDeleteUpdates">false</bool>
+    <bool name="config_forcePrioritizeUpdateProcess">false</bool>
 </resources>
