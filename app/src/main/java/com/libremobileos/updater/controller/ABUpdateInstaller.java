@@ -192,7 +192,8 @@ class ABUpdateInstaller {
             }
         }
 
-        boolean enableABPerfMode = PreferenceManager.getDefaultSharedPreferences(mContext)
+        boolean enableABPerfMode = Utils.isABPerfModeForceEnabled(mContext) ? true
+                : PreferenceManager.getDefaultSharedPreferences(mContext)
                 .getBoolean(Constants.PREF_AB_PERF_MODE, true);
         mUpdateEngine.setPerformanceMode(enableABPerfMode);
 

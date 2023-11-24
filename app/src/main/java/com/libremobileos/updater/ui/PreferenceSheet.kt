@@ -53,8 +53,14 @@ class PreferenceSheet : BottomSheetDialogFragment() {
             preferencesUpdateRecovery = findViewById(R.id.preferences_update_recovery)
             preferencesAutoUpdatesCheckInterval = findViewById(R.id.preferences_auto_updates_check_interval)
         }
-        if (!Utils.isABDevice())
+
+        if (!Utils.isABDevice() || Utils.isABPerfModeForceEnabled(requireContext())) {
             preferencesAbPerfMode.visibility = View.GONE
+        }
+
+        if (Utils.isDeleteUpdatesForceEnabled(requireContext())) {
+            preferencesAutoDeleteUpdates.visibility = View.GONE
+        }
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         preferencesAutoUpdatesCheckInterval.setSelection(Utils.getUpdateCheckSetting(requireContext()))
