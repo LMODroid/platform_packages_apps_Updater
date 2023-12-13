@@ -355,7 +355,6 @@ class UpdateView : LinearLayout {
             }
             mUpdaterController!!.isVerifyingUpdate(downloadId) -> {
                 actionProgress.visibility = VISIBLE
-                setButtonAction(actionInstallButton, Action.INSTALL, false)
                 actionProgressStats.setText(R.string.list_verifying_update)
                 actionProgressBar.isIndeterminate = true
                 actionProgressPause.isEnabled = false
