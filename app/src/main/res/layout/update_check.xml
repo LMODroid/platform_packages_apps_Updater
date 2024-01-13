@@ -10,9 +10,7 @@
     android:paddingStart="48dp"
     android:paddingTop="64dp"
     android:paddingEnd="48dp"
-    android:paddingBottom="48dp"
-    android:visibility="gone"
-    tools:visibility="visible">
+    android:paddingBottom="48dp">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
