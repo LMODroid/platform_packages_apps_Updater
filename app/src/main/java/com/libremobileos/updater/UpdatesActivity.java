@@ -4,6 +4,7 @@
  */
 package com.libremobileos.updater;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -14,6 +15,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.icu.text.DateFormat;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
@@ -131,6 +134,15 @@ public class UpdatesActivity extends UpdatesListActivity {
 
         actionCheck.findViewById(R.id.actionCheckButton).setOnClickListener(view -> downloadUpdatesList(true));
         pullToRefresh.setOnRefreshListener(() -> downloadUpdatesList(true));
+
+        checkAndRequestForPermissionNotification();
+    }
+
+    private void checkAndRequestForPermissionNotification() {
+        if (ContextCompat.checkSelfPermission(UpdatesActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            }).launch(Manifest.permission.POST_NOTIFICATIONS);
+        }
     }
 
     @Override
