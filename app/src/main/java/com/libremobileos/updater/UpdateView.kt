@@ -216,8 +216,6 @@ class UpdateView : LinearLayout {
         actionStartButton.setOnClickListener {
             mDownloadId?.let { it1 ->
                 startDownloadWithWarning(it1)
-                hideEverythingBut(actionProgress)
-                actionProgress.visibility = VISIBLE
             }
         }
         actionResume.setOnClickListener {
@@ -420,6 +418,8 @@ class UpdateView : LinearLayout {
         val preferences = PreferenceManager.getDefaultSharedPreferences(mActivity)
         val warn = preferences.getBoolean(Constants.PREF_METERED_NETWORK_WARNING, true)
         if (!(Utils.isNetworkMetered(mActivity) && warn)) {
+            hideEverythingBut(actionProgress)
+            actionProgress.visibility = VISIBLE
             mUpdaterController!!.startDownload(downloadId)
             return
         }
