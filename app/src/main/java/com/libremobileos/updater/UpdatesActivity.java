@@ -318,6 +318,9 @@ public class UpdatesActivity extends UpdatesListActivity {
     }
 
     private void handleDownloadStatusChange(String downloadId) {
+        if (mUpdaterService == null)
+            return;
+
         UpdateInfo update = mUpdaterService.getUpdaterController().getUpdate(downloadId);
         switch (update.getStatus()) {
             case PAUSED_ERROR:
