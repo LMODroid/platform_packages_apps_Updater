@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Updater
 Upstream-Contact: The LineageOS Project
-Source: https://github.com/LineageOS/android_packages_apps_Updater
+Source: https://github.com/LMODroid/platform_packages_apps_Updater
 
 Files: .gitignore
 Copyright: 2023 The LineageOS Project
