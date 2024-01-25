@@ -3,13 +3,13 @@
 # SPDX-FileCopyrightText: 2018-2020 The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 
-updates_dir=/data/lineageos_updates
+updates_dir=/data/lmodroid_updates
 
 if [ ! -f "$1" ]; then
    echo "Usage: $0 ZIP [UNVERIFIED]"
    echo "Push ZIP to $updates_dir and add it to Updater"
    echo
-   echo "The name of ZIP is assumed to have lineage-VERSION-DATE-TYPE-* as format"
+   echo "The name of ZIP is assumed to have LMODroid-VERSION-DATE-TYPE-* as format"
    echo "If UNVERIFIED is set, the app will verify the update"
    exit
 fi
@@ -36,7 +36,7 @@ else
     status=2
 fi
 
-# Assume lineage-VERSION-DATE-TYPE-*.zip
+# Assume LMODroid-VERSION-DATE-TYPE-*.zip
 zip_name=`basename "$zip_path"`
 id=`echo "$zip_name" | sha1sum | cut -d' ' -f1`
 version=`echo "$zip_name" | cut -d'-' -f2`
