@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Updater"
 include(":app")
+include(":SettingsLib")

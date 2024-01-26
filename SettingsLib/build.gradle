@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.android.settingslib'
+    compileSdkVersion 34
+
+    sourceSets.main {
+        manifest.srcFile 'AndroidManifest.xml'
+        res.srcDirs = ['res']
+        res.srcDirs = [
+            'main/res',
+            'CollapsingToolbarBaseActivity/res',
+        ]
+        java.srcDirs = [
+            'CollapsingToolbarBaseActivity/src',
+        ]
+    }
+}
+
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0-alpha01'
+    implementation 'androidx.preference:preference:1.2.0'
+
+}
