@@ -9,7 +9,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorPrimary</item>
         <item name="backgroundColor">@color/colorPrimary</item>
-        <item name="fontFamily">google-sans</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:switchStyle">@style/Switch.SettingsLib</item>
         <item name="android:textAppearanceListItem">
@@ -30,15 +29,6 @@
     <style name="AlertDialogTheme" parent="@style/Theme.AlertDialog.SettingsLib">
         <item name="colorPrimary">?android:textColorPrimary</item>
         <item name="colorOnPrimary">?android:textColorPrimary</item>
-    </style>
-
-    <style name="CollapsingToolbarTitle.Collapsed" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
-        <item name="fontFamily">google-sans</item>
-        <item name="android:textSize">20dp</item>
-    </style>
-
-    <style name="CollapsingToolbarTitle.Expanded" parent="CollapsingToolbarTitle.Collapsed">
-        <item name="android:textSize">36dp</item>
     </style>
 
     <style name="Theme.Base.PopupMenuOverlapAnchor">
@@ -73,7 +63,6 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="fontFamily">google-sans</item>
     </style>
 
 </resources>
