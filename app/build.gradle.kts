@@ -41,31 +41,6 @@ android {
         versionName = "1.0"
     }
 
-    buildTypes {
-        getByName("release") {
-            // Includes the default ProGuard rules files.
-            setProguardFiles(
-                listOf(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
-            )
-        }
-        getByName("debug") {
-            // Append .dev to package name so we won't conflict with AOSP build.
-            applicationIdSuffix = ".dev"
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     signingConfigs {
         create("release") {
             (keystoreProperties["keyAlias"] as String?)?.let {
@@ -81,6 +56,31 @@ android {
                 storePassword = it
             }
         }
+    }
+
+    buildTypes {
+        getByName("release") {
+            // Includes the default ProGuard rules files.
+            setProguardFiles(
+                listOf(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            )
+            signingConfig = signingConfigs.getByName("release")
+        }
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
