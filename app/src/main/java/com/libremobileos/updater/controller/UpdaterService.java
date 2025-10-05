@@ -51,6 +51,8 @@ public class UpdaterService extends Service {
     public static final String ACTION_INSTALL_SUSPEND = "action_install_suspend";
     public static final String ACTION_INSTALL_RESUME = "action_install_resume";
 
+    public static final String ACTION_POST_REBOOT_CLEANUP = "action_post_reboot_cleanup";
+
     private static final String ONGOING_NOTIFICATION_CHANNEL =
             "ongoing_notification_channel";
 
@@ -168,6 +170,10 @@ public class UpdaterService extends Service {
                         mUpdaterController);
                 installer.reconnect();
             }
+        } else if (ACTION_POST_REBOOT_CLEANUP.equals(intent.getAction())) {
+            String downloadId = intent.getStringExtra(EXTRA_DOWNLOAD_ID);
+            handlePostRebootCleanup(downloadId);
+            tryStopSelf();
         } else if (ACTION_DOWNLOAD_CONTROL.equals(intent.getAction())) {
             String downloadId = intent.getStringExtra(EXTRA_DOWNLOAD_ID);
             int action = intent.getIntExtra(EXTRA_DOWNLOAD_CONTROL, -1);
@@ -181,6 +187,10 @@ public class UpdaterService extends Service {
         } else if (ACTION_INSTALL_UPDATE.equals(intent.getAction())) {
             String downloadId = intent.getStringExtra(EXTRA_DOWNLOAD_ID);
             UpdateInfo update = mUpdaterController.getUpdate(downloadId);
+            if (update == null) {
+                Log.e(TAG, "Update not found: " + downloadId);
+                return START_NOT_STICKY;
+            }
             if (update.getPersistentStatus() != UpdateStatus.Persistent.VERIFIED) {
                 throw new IllegalArgumentException(update.getDownloadId() + " is not verified");
             }
@@ -404,13 +414,6 @@ public class UpdaterService extends Service {
                 mNotificationBuilder.setAutoCancel(true);
                 mNotificationManager.notify(NOTIFICATION_ID, mNotificationBuilder.build());
 
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-                boolean deleteUpdate = Utils.isDeleteUpdatesForceEnabled(this) ? true
-                        : pref.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, true);
-                if (deleteUpdate) {
-                    mUpdaterController.deleteUpdate(update.getDownloadId());
-                }
-
                 tryStopSelf();
                 break;
             }
@@ -534,5 +537,26 @@ public class UpdaterService extends Service {
         intent.setAction(ACTION_INSTALL_RESUME);
         return PendingIntent.getService(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+    }
+
+    private void handlePostRebootCleanup(String downloadId) {
+        if (downloadId == null) {
+            return;
+        }
+
+        UpdateInfo update = mUpdaterController.getUpdate(downloadId);
+        if (update == null) {
+            Log.w(TAG, "Update not found during post-reboot cleanup: " + downloadId);
+            return;
+        }
+
+        Log.d(TAG, "Post-reboot cleanup for: " + downloadId);
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean deleteUpdate = Utils.isDeleteUpdatesForceEnabled(this) ? true
+                : pref.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, true);
+        if (deleteUpdate) {
+            mUpdaterController.deleteUpdate(downloadId);
+        }
     }
 }
