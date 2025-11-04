@@ -19,6 +19,7 @@ android_app {
 
     platform_apis: true,
     privileged: true,
+    privapp_allowlist: "com.libremobileos.updater.xml",
     certificate: "platform",
     system_ext_specific: true,
 
@@ -43,17 +44,8 @@ android_app {
     },
 
     required: [
-        "privapp_whitelist_com.libremobileos.updater",
         "default-permissions_com.libremobileos.updater"
     ],
-}
-
-prebuilt_etc {
-    name: "privapp_whitelist_com.libremobileos.updater",
-    system_ext_specific: true,
-    sub_dir: "permissions",
-    src: "privapp_whitelist_com.libremobileos.updater.xml",
-    filename_from_src: true,
 }
 
 prebuilt_etc {
